@@ -14,12 +14,14 @@ public:
 	MarioException(int line, const char* file) noexcept;
 
 	#pragma endregion
+
 	#pragma region OverRide Defn
 
 	// Returns a null terminated character sequence that may be used to identify the exception.
 	const char* what() const noexcept override;
 
 	#pragma endregion
+
 	#pragma region Methods
 
 	// Returns a null terminated character sequence that may be used to represent the Mario Exception.
