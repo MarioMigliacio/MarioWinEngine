@@ -1,4 +1,5 @@
 #include <Windows.h>
+#include "WindowsMessageMap.h"
 
 // https://docs.microsoft.com/en-us/windows/desktop/winprog/using-the-windows-headers
 // https://wiki.winehq.org/List_Of_Windows_Messages
@@ -8,10 +9,21 @@
 
 LRESULT CALLBACK WndProc( HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam )
 {
+	static WindowsMessageMap mm;
+	OutputDebugString( mm( msg, lParam, wParam ).c_str() );
+
 	switch( msg )
 	{
 		case WM_CLOSE:
 			PostQuitMessage( 25 );	break;
+			break;
+			// found to be ESC key for ease to quit
+		case WM_KEYDOWN:
+			if( lParam == 65537 )
+			{
+				PostQuitMessage( 25 );	break;
+				break;
+			}
 	}
 
 	return DefWindowProc( hWnd, msg, wParam, lParam );
@@ -69,7 +81,7 @@ int CALLBACK WinMain(
 	}
 	else
 	{
-		return msg.wParam;
+		return static_cast<int>(msg.wParam);
 	}
 
 	return 0;

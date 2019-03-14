@@ -15,7 +15,7 @@ public:
 
 	#pragma endregion
 
-	#pragma region OverRide Defn
+	#pragma region Override Defn
 
 	// Returns a null terminated character sequence that may be used to identify the exception.
 	const char* what() const noexcept override;
@@ -38,8 +38,8 @@ public:
 
 #pragma endregion
 private:
-	int line;
-	std::string file;
+	int line;								// the line private member data
+	std::string file;						// the file private member data
 protected:
-	mutable std::string whatBuffer;
+	mutable std::string whatBuffer;			// the whatBuffer private member data
 };
